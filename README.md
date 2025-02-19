@@ -13,3 +13,14 @@
 * Provides a fully immutable implementation of the chess game model.
 * Provides an undo command to restore previous chess game states.
 * Provides a full code documentation.
+
+
+
+
+# Original Repo: 
+
+
+Repository Link: https://github.com/typedbyte/Chess.NET
+
+
+Repository Owner: https://github.com/typedbyte
