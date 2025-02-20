@@ -30,13 +30,15 @@ namespace Chess.View.Window
         /// </summary>
         private readonly PromotionSelector promotionSelector;
 
+        private bool mode = false;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
             this.InitializeComponent();
-            this.game = new ChessGameVM(this.Choose);
+            this.game = new ChessGameVM(this.Choose, mode);
             this.promotionSelector = new PromotionSelector();
             this.DataContext = this.game;
         }
@@ -103,6 +105,11 @@ namespace Chess.View.Window
                 selectedPiece != null
                     ? promotions[selectedPiece]
                     : null;
+        }
+
+        private void Chess_960_Checked(object sender, RoutedEventArgs e)
+        {
+            mode = !mode;
         }
     }
 }
