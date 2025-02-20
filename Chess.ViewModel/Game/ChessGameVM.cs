@@ -24,6 +24,7 @@ namespace Chess.ViewModel.Game
         /// Represents the rulebook for the game.
         /// </summary>
         private readonly IRulebook rulebook;
+        private readonly IRulebook rulebook_960;
 
         /// <summary>
         /// Represents the disambiguation mechanism if multiple updates are available for a target field.
@@ -51,13 +52,13 @@ namespace Chess.ViewModel.Game
         private BoardVM board;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChessGameVM"/> class.
+        /// Initializes a new instance of the <see cref="ChessGameVM"/> class. Also, creates the rulebooks for both classic and chess 960.
         /// </summary>
         /// <param name="updateSelector">The disambiguation mechanism if multiple updates are available for a target field.</param>
-        public ChessGameVM(Func<IList<Update>, Update> updateSelector, bool Mode)
+        public ChessGameVM(Func<IList<Update>, Update> updateSelector)
         {
-            if(Mode) this.rulebook = new Chess960Rulebook();
-            else this.rulebook = new StandardRulebook();
+            this.rulebook_960 = new Chess960Rulebook();
+            this.rulebook = new StandardRulebook();
 
             this.Game = this.rulebook.CreateGame();
             this.board = new BoardVM(this.Game.Board);
@@ -132,7 +133,11 @@ namespace Chess.ViewModel.Game
             }
         }
 
-        public GenericCommand New960
+        /// <summary>
+        /// Gets the command that starts a new chess 960 game.
+        /// </summary>
+        /// <value>The command that starts a new chess 960 game.</value>
+        public GenericCommand New960Game
         {
             get
             {
@@ -141,7 +146,7 @@ namespace Chess.ViewModel.Game
                     () => true,
                     () =>
                     {
-                        this.Game = this.rulebook.CreateGame();
+                        this.Game = this.rulebook_960.CreateGame();
                         this.Board = new BoardVM(this.Game.Board);
                         this.OnPropertyChanged(nameof(this.Status));
                     }

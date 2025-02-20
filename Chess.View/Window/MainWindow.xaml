@@ -27,12 +27,12 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="Game">
-                <MenuItem Header="New" Command="{Binding NewCommand}" InputGestureText="Ctrl+N">
+                <MenuItem Header="New - Classic" Command="{Binding NewCommand}" InputGestureText="Ctrl+N">
                     <MenuItem.Icon>
                         <icon:NewIcon />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="New - Chess 960" Command="{Binding New960}">
+                <MenuItem Header="New - Chess 960" Command="{Binding New960Game}">
                     <MenuItem.Icon>
                         <icon:NewIcon />
                     </MenuItem.Icon>
@@ -48,7 +48,6 @@
                         <icon:ExitIcon />
                     </MenuItem.Icon>
                 </MenuItem>
-                <CheckBox x:Name="Chess_960" Content="Chess 960 Mode" IsChecked="True" Checked="Chess_960_Checked"/>
             </MenuItem>
             <MenuItem HorizontalAlignment="Right">
                 <MenuItem.Header>
